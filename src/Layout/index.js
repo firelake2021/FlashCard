@@ -8,7 +8,6 @@ function Layout() {
   const [decks, setDecks] = useState([]);
 
   useEffect(() => {
-    setDecks([]);
     async function loadData() {
       const response = await listDecks();
       setDecks(response);

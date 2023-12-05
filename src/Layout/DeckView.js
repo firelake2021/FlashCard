@@ -6,15 +6,12 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import { handleOnClickStudy, handleOnClickDeleteDeck } from "../utils/common";
 
+// /decks/:deckId
+//http://localhost:3000/decks/3
 function DeckView() {
-  const [deck, setDeck] = useState({});
+  const [deck, setDeck] = useState([]);
   const deckId = useParams().deckId;
-
-  // /decks/:deckId
-  //http://localhost:3000/decks/3
-
   useEffect(() => {
-    setDeck([]);
     const abortController = new AbortController();
     async function loadData() {
       try {
@@ -25,8 +22,8 @@ function DeckView() {
     loadData();
     return () => abortController.abort();
   }, [deckId]);
-  console.log("dec here", deck);
-  console.log("dec id", deckId);
+
+  console.log("view deck:", deck);
 
   const handleOnClickEditDeck = (id) => {
     window.location = `/decks/${id}/edit`;

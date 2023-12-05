@@ -104,7 +104,6 @@ export async function createDeck(deck, signal) {
  *  a promise that resolves to the saved deck.
  */
 export async function readDeck(deckId, signal) {
-  console.log("deckId", deckId);
   const url = `${API_BASE_URL}/decks/${deckId}?_embed=cards`;
   return await fetchJson(url, { signal }, {});
 }
@@ -161,6 +160,7 @@ export async function createCard(deckId, card, signal) {
   // and the card is not related to the deck because the data types of the ID's are different.
   const url = `${API_BASE_URL}/cards`;
   card.deckId = Number(deckId);
+  console.log("api call", JSON.stringify(card));
   const options = {
     method: "POST",
     headers,

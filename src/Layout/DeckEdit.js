@@ -4,13 +4,12 @@ import { readDeck, updateDeck } from "../utils/api";
 import { Link } from "react-router-dom";
 
 function EditDeck() {
-  const [deck, setDecks] = useState({});
+  const [deck, setDecks] = useState([]);
   const deckId = useParams().deckId;
 
   // http://localhost:3000/decks/1/edit
 
   useEffect(() => {
-    setDecks([]);
     async function loadData() {
       try {
         const response = await readDeck(deckId);
@@ -20,7 +19,7 @@ function EditDeck() {
     }
     loadData();
   }, [deckId]);
-  console.log("decID", deckId);
+  console.log("deckID", deckId);
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();

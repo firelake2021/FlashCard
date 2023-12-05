@@ -11,9 +11,9 @@
       "id": 2
     },
     {
-      "id": 3,
-      "name": "java",
-      "description": "jaava"
+      "name": "my deck",
+      "description": "my deck",
+      "id": 3
     }
   ],
   "cards": [
@@ -48,45 +48,27 @@
       "id": 5
     },
     {
-      "id": 9,
-      "front": "nv",
-      "back": "nv",
-      "deckId": "3"
-    },
-    {
-      "id": 10,
-      "front": "vv",
-      "back": "vv",
-      "deckId": "3"
-    },
-    {
       "front": "fvv",
       "back": "fvvv",
       "id": 11
     },
     {
-      "front": "new card",
-      "back": "again",
-      "id": 12,
-      "deckId": 3
+      "front": "my card",
+      "back": "my card",
+      "deckId": 3,
+      "id": 12
     },
     {
-      "front": "unit test",
-      "back": "unit test",
-      "id": 13,
-      "deckId": 3
+      "front": "my card",
+      "back": "my card",
+      "deckId": 3,
+      "id": 13
     },
     {
-      "front": "javascript",
-      "back": "javascript",
-      "id": 14,
-      "deckId": 3
-    },
-    {
-      "front": "clown",
-      "back": "cirk",
-      "id": 15,
-      "deckId": 3
+      "front": "my card",
+      "back": "my card",
+      "deckId": 3,
+      "id": 14
     }
   ]
 }

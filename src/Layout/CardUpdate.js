@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { readDeck, readCard, updateCard } from "../utils/api";
 import { Link } from "react-router-dom";
+import CardForm from "./CardForm";
 
 function CardUpdate() {
   const [deck, setDecks] = useState({});
@@ -24,17 +25,7 @@ function CardUpdate() {
         console.log(error);
       }
     }
-    async function loadDeck() {
-      try {
-        const response = await readDeck(deckId);
-        setDecks(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
     loadData();
-    loadDeck();
   }, [deckId, cardId]);
 
   const handleOnChange = ({ target }) => {
@@ -74,32 +65,15 @@ function CardUpdate() {
       </nav>
       <div>
         <h1> {deck.name}: Edit Card</h1>
-        <form name="editCard" className="input-form" onSubmit={handleOnSubmit}>
-          <div>
-            <div>
-              <label htmlFor="front">Front</label>
-              <textarea
-                name="front"
-                rows={10}
-                required
-                value={card.front}
-                onChange={handleOnChange}
-              ></textarea>
-            </div>
-            <div>
-              <label htmlFor="Back">Back</label>
-              <textarea
-                name="back"
-                rows={10}
-                required
-                value={card.back}
-                onChange={handleOnChange}
-              ></textarea>
-            </div>
-          </div>
-          <button onClick={handleOnClickDone}>Cancel</button>
-          <button type="Submit">Save</button>
-        </form>
+        <CardForm
+          front={card.front}
+          back={card.back}
+          handleOnChange={handleOnChange}
+          handleOnSubmit={handleOnSubmit}
+          handleOnClickDone={handleOnClickDone}
+          buttonNameSubmit={"Submit"}
+          buttonNameCancel={"Cancel"}
+        ></CardForm>
       </div>
     </div>
   );

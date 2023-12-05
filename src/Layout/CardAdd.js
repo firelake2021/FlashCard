@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { readDeck, createCard } from "../utils/api";
-import CardFrontBack from "./CardFrontBack";
 import { Link } from "react-router-dom";
+import CardForm from "./CardForm";
 
+//http://localhost:3000//decks/:deckId/cards/new
+//http://localhost:3000/decks/2/cards/new
 function CardAdd() {
-  const [deck, setDecks] = useState({});
+  const [deck, setDecks] = useState([]);
   const deckId = useParams().deckId;
-  const [front, setFront] = useState("");
-  const [back, setBack] = useState("");
-
-  // http://localhost:3000//decks/:deckId/cards/new
-  //http://localhost:3000/decks/2/cards/new
+  const [card, setCard] = useState({});
 
   useEffect(() => {
-    setDecks([]);
     async function loadData() {
       try {
         const response = await readDeck(deckId);
-
         setDecks(response);
       } catch (error) {}
     }
     loadData();
   }, [deckId]);
 
-  const handleOnChangeFront = ({ target }) => {
-    setFront(target.value);
+  const handleOnChange = ({ target }) => {
+    setCard({ ...card, [target.name]: `${target.value}` });
   };
-  const handleOnChangeBack = ({ target }) => {
-    setBack(target.value);
-  };
+
+  console.log("card", card);
 
   const handleOnClickDone = () => {
     window.location = `/decks/${deck.id}`;
@@ -38,13 +33,9 @@ function CardAdd() {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    const response = await createCard(deckId, {
-      front: `${front}`,
-      back: `${back}`,
-    });
+    const response = await createCard(deckId, card);
     console.log("response", response);
-    setBack("");
-    setFront("");
+    setCard({});
   };
 
   return (
@@ -62,16 +53,15 @@ function CardAdd() {
       </nav>
       <div>
         <h1>{deck.name}: Add Card</h1>
-        <form name="Add Card" className="input-form" onSubmit={handleOnSubmit}>
-          <CardFrontBack
-            front={front}
-            back={back}
-            handleOnChangeFront={handleOnChangeFront}
-            handleOnChangeBack={handleOnChangeBack}
-          />
-          <button onClick={handleOnClickDone}>Done</button>
-          <button type="Submit">Save</button>
-        </form>
+        <CardForm
+          front={card.front}
+          back={card.back}
+          handleOnChange={handleOnChange}
+          handleOnSubmit={handleOnSubmit}
+          handleOnClickDone={handleOnClickDone}
+          buttonNameSubmit={"Save"}
+          buttonNameCancel={"Done"}
+        ></CardForm>
       </div>
     </div>
   );

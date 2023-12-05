@@ -8,7 +8,6 @@ import Flip from "./Flip";
 import NotEnoughCards from "./NotEnoughCards";
 
 function Study() {
-  const [deck, setDecks] = useState({});
   const deckId = useParams().deckId;
   const [count, setCount] = useState(0);
   const [deckName, setDeckName] = useState("");
@@ -32,7 +31,6 @@ function Study() {
   };
 
   useEffect(() => {
-    setDecks([]);
     const abortController = new AbortController();
     async function loadData() {
       try {
@@ -92,6 +90,5 @@ function Study() {
         numberOfCards={cards.length}
       />
     );
-  //return "loading";
 }
 export default Study;

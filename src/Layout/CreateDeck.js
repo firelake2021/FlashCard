@@ -68,7 +68,9 @@ function CreateDeck() {
                 onChange={handleDescriptionOnChange}
               ></textarea>
             </div>
-            <button onClick={handleOnCancel}>Cancel</button>
+            <button type="button" onClick={handleOnCancel}>
+              Cancel
+            </button>
             <button type="Submit">Submit</button>
           </fieldset>
         </form>
